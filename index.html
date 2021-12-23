@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Dusting Zone</title>
+    <meta name="description" content="It’s oh-so-satisfying to wipe the dust off a screen or erase a dusty chalkboard.">
+    <link rel="stylesheet" href="style.min.css">
+    <link rel="shortcut icon" href="images/feather.png" />
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta content="@lynnandtonic" name="twitter:site">
+    <meta content="@lynnandtonic" name="twitter:creator">
+    <meta content="It’s oh-so-satisfying to wipe the dust off a screen or erase a dusty chalkboard." name="twitter:description" property="og:description">
+    <meta content="https://thedusting.zone" property="og:url">
+    <meta content="https://thedusting.zone" property="twitter:url">
+    <meta content="The Dusting Zone" name="twitter:title" property="og:title">
+    <meta content="https://thedusting.zone/images/og.jpg" property="og:image">
+    <meta content="https://thedusting.zone/images/og.jpg" name="twitter:image">
+</head>
+
+<body>
+    <header>
+        <h1>The Dusting Zone</h1>
+        <button id="screen" class="active">Screen</button>
+        <button id="chalk">Chalk</button>
+        <button id="white">Dry Erase</button>
+        <button id="clr" onclick="erase()">Reset</button>
+    </header>
+    <div id="canvas-bg" class="dusty">
+        <canvas id="canvas" class="dusty"></canvas>
+    </div>
+    <script src="draw.min.js"></script>
+</body>
+</html>

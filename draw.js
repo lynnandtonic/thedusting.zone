@@ -2,32 +2,35 @@
 // to load, then performs the operations.
 // This is considered best practice.
 window.addEventListener('load', ()=>{
-        
     resize(); // Resizes the canvas once the window loads
     document.addEventListener('mousedown', startPainting);
     document.addEventListener('mouseup', stopPainting);
     document.addEventListener('mousemove', sketch);
     window.addEventListener('resize', resize);
+    document.addEventListener('touchstart', touchstart, false);
+    document.addEventListener('touchend', touchend, false);
+    document.addEventListener('touchmove', touchmove, false);
 });
-    
+
 const canvas = document.querySelector('#canvas');
-   
+
 // Context for the canvas for 2 dimensional operations
 const ctx = canvas.getContext('2d');
-    
+const canvasBg = document.querySelector('#canvas-bg');
+
 // Resizes the canvas to the available size of the window.
 function resize(){
   ctx.canvas.width = window.innerWidth;
   ctx.canvas.height = window.innerHeight;
 }
-    
+
 // Stores the initial position of the cursor
 let coord = {x:0 , y:0}; 
-   
+
 // This is the flag that we are going to use to 
 // trigger drawing
 let paint = false;
-    
+
 // Updates the coordianates of the cursor when 
 // an event e is triggered to the coordinates where 
 // the said event is triggered.
@@ -45,19 +48,29 @@ function startPainting(event){
 function stopPainting(){
   paint = false;
 }
-    
+
 function sketch(event){
   if (!paint) return;
   ctx.beginPath();
-    
+
   ctx.lineWidth = 100;
-   
+
   // Sets the end of the lines drawn
   // to a round shape.
   ctx.lineCap = 'round';
-    
-  ctx.strokeStyle = '#33373b';
-      
+
+  // ctx.strokeStyle = '#33373b';
+
+  if ( canvas.classList.contains('dusty') ) {
+    ctx.strokeStyle = '#33373b';
+  }
+  if ( canvas.classList.contains('chalk') ) {
+    ctx.strokeStyle = 'rgba(81,112,81,.85)';
+  }
+  if ( canvas.classList.contains('white') ) {
+    ctx.strokeStyle = 'rgba(247,247,247,.6)';
+  }
+
   // The cursor to start drawing
   // moves to this coordinate
   ctx.moveTo(coord.x, coord.y);
@@ -73,4 +86,69 @@ function sketch(event){
     
   // Draws the line.
   ctx.stroke();
+}
+
+function touchstart(event) {
+  startPainting(event.touches[0]);
+}
+
+function touchend(event) {
+  stopPainting(event.changedTouches[0]);
+}
+
+function touchmove(event) {
+  sketch(event.touches[0]);
+  event.preventDefault();
+}
+
+function erase() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+var screen = document.querySelector('#screen');
+
+screen.onclick = function() {
+  canvas.classList.add('dusty');
+  canvasBg.classList.add('dusty');
+  canvas.classList.remove('chalk', 'white');
+  canvasBg.classList.remove('chalk', 'white');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  screen.classList.toggle('active');
+  if ( chalk.classList.contains('active') ) {
+    chalk.classList.toggle('active');
+  } else if ( white.classList.contains('active') ) {
+    white.classList.toggle('active');
+  }
+}
+
+var chalk = document.querySelector('#chalk');
+
+chalk.onclick = function() {
+  canvas.classList.add('chalk');
+  canvasBg.classList.add('chalk');
+  canvas.classList.remove('dusty', 'white');
+  canvasBg.classList.remove('dusty', 'white');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  chalk.classList.toggle('active');
+  if ( screen.classList.contains('active') ) {
+    screen.classList.toggle('active');
+  } else if ( white.classList.contains('active') ) {
+    white.classList.toggle('active');
+  }
+}
+
+var white = document.querySelector('#white');
+
+white.onclick = function() {
+  canvas.classList.add('white');
+  canvasBg.classList.add('white');
+  canvas.classList.remove('dusty', 'chalk');
+  canvasBg.classList.remove('dusty', 'chalk');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  white.classList.toggle('active');
+  if ( screen.classList.contains('active') ) {
+    screen.classList.toggle('active');
+  } else if ( chalk.classList.contains('active') ) {
+    chalk.classList.toggle('active');
+  }
 }
