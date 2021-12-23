@@ -61,13 +61,13 @@ function sketch(event){
 
   // ctx.strokeStyle = '#33373b';
 
-  if ( canvas.classList.contains('dusty') ) {
+  if ( canvasBg.classList.contains('dusty') ) {
     ctx.strokeStyle = '#33373b';
   }
-  if ( canvas.classList.contains('chalk') ) {
+  if ( canvasBg.classList.contains('chalk') ) {
     ctx.strokeStyle = 'rgba(81,112,81,.85)';
   }
-  if ( canvas.classList.contains('white') ) {
+  if ( canvasBg.classList.contains('white') ) {
     ctx.strokeStyle = 'rgba(247,247,247,.6)';
   }
 
@@ -108,47 +108,23 @@ function erase() {
 var screen = document.querySelector('#screen');
 
 screen.onclick = function() {
-  canvas.classList.add('dusty');
   canvasBg.classList.add('dusty');
-  canvas.classList.remove('chalk', 'white');
   canvasBg.classList.remove('chalk', 'white');
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  screen.classList.toggle('active');
-  if ( chalk.classList.contains('active') ) {
-    chalk.classList.toggle('active');
-  } else if ( white.classList.contains('active') ) {
-    white.classList.toggle('active');
-  }
 }
 
 var chalk = document.querySelector('#chalk');
 
 chalk.onclick = function() {
-  canvas.classList.add('chalk');
   canvasBg.classList.add('chalk');
-  canvas.classList.remove('dusty', 'white');
   canvasBg.classList.remove('dusty', 'white');
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  chalk.classList.toggle('active');
-  if ( screen.classList.contains('active') ) {
-    screen.classList.toggle('active');
-  } else if ( white.classList.contains('active') ) {
-    white.classList.toggle('active');
-  }
 }
 
 var white = document.querySelector('#white');
 
 white.onclick = function() {
-  canvas.classList.add('white');
   canvasBg.classList.add('white');
-  canvas.classList.remove('dusty', 'chalk');
   canvasBg.classList.remove('dusty', 'chalk');
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  white.classList.toggle('active');
-  if ( screen.classList.contains('active') ) {
-    screen.classList.toggle('active');
-  } else if ( chalk.classList.contains('active') ) {
-    chalk.classList.toggle('active');
-  }
 }

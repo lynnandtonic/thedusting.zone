@@ -2,16 +2,16 @@
     box-sizing: border-box;
 }
 
+* {
+    overflow: hidden;
+}
+
 html {
     width: 100vw;
     height: 100vh;
     height: -webkit-fill-available;
     font-family: 'Courier New', monospace;
     cursor: url(images/cursor.svg) 20 20, auto;
-}
-
-* {
-    overflow: hidden;
 }
 
 body {
@@ -26,6 +26,8 @@ body {
 header {
     height: var(--header-height);
     background-color: #111;
+    display: flex;
+    align-items: center;
 }
 
 h1 {
@@ -34,32 +36,59 @@ h1 {
     margin-right: auto;
 }
 
-button {
-    background-color: transparent;
-    position: relative;
-    outline: none;
-    border: none;
-    font-family: 'Courier New', monospace;
-    font-weight: bold;
-    line-height: 1;
-    color: white;
-    cursor: url(images/cursor2.svg) 20 20, auto;
+form {
+    display: flex;
 }
 
-button:not(#clr)::before {
-    content: '⬜';
+label {
+    color:  white;
+    font-weight: bold;
+    position: relative;
+    padding: 1.5em;
+}
+
+label:hover,
+button:hover {
+    text-decoration: underline;
+}
+
+input[type="radio"] {
+    margin: 0;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    line-height: 1;
+}
+
+input[type="radio"]::before {
+    content: '◻️';
     position: absolute;
     left: 0;
     top: 50%;
     transform: translateY(-50%);
 }
 
-button:not(#clr).active::before {
-    content: '✅';
+input[type="radio"]:checked::before {
+  content: '✅';
 }
 
-button:hover {
-    text-decoration: underline;
+label,
+input[type="radio"],
+input[type="radio"]::before,
+button {
+    cursor: url(images/cursor2.svg) 20 20, auto;
+}
+
+button {
+    padding: .5em;
+    position: relative;
+    outline: none;
+    background-color: transparent;
+    border: none;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    line-height: 1;
+    color: white;
 }
 
 @media screen and (max-width: 650px) {
@@ -67,18 +96,23 @@ button:hover {
         --border-width: 15px;
         --header-height: 70px;
     }
-    h1, button {
+    header {
+        flex-wrap: wrap;
+    }
+    h1, label, button {
         font-size: 80%;
     }
     h1 {
         width: 100%;
         padding: 1.2em 0 .5em;
     }
-    button {
-        padding: .5em;
+    button,
+    label {
+        padding-top: .5em;
+        padding-bottom: .5em;
     }
-    button:not(#clr) {
-        padding-left: 1.5em;
+    button {
+        margin-top: 1px;
     }
 }
 
@@ -88,21 +122,17 @@ button:hover {
         --header-height: 80px;
     }
     header {
-        display: flex;
         justify-content: flex-end;
-        align-items: center;
     }
-    h1, button {
+    h1, label, button {
         font-size: 100%;
     }
-    button {
-        padding: 1em;
-    }
-    button:not(#clr) {
-        padding-left: 1.5em;
+    button,
+    label {
+        padding-top: 1em;
+        padding-bottom: 1em;
     }
 }
-
 
 #canvas-bg {
     height: calc(100vh - (var(--header-height) + var(--border-width)));

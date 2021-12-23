@@ -22,13 +22,18 @@
 <body>
     <header>
         <h1>The Dusting Zone</h1>
-        <button id="screen" class="active">Screen</button>
-        <button id="chalk">Chalk</button>
-        <button id="white">Dry Erase</button>
+        <form autocomplete="off">
+            <label id="screen" class="form-control">
+              <input type="radio" name="radio" checked />Screen</label>
+            <label id="chalk" class="form-control">
+              <input type="radio" name="radio" />Chalk</label>
+            <label id="white" class="form-control">
+              <input type="radio" name="radio" />Dry Erase</label>
+        </form>
         <button id="clr" onclick="erase()">Reset</button>
     </header>
     <div id="canvas-bg" class="dusty">
-        <canvas id="canvas" class="dusty"></canvas>
+        <canvas id="canvas"></canvas>
     </div>
     <script src="draw.min.js"></script>
 </body>
