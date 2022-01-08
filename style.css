@@ -19,8 +19,10 @@ body {
     min-height: 100vh;
     min-height: -webkit-fill-available;
     margin: 0;
+    background-color: #111;
     border: var(--border-width) solid #111;
     border-top: none;
+    color:  white;
 }
 
 header {
@@ -31,9 +33,24 @@ header {
 }
 
 h1 {
-    color: white;
     margin: 0;
+}
+
+.title {
     margin-right: auto;
+}
+
+.title p {
+    margin: .3em 0 0;
+    font-size: 80%;
+}
+
+.title a {
+    color: #ccc;
+}
+
+.title a:hover {
+    color: white;
 }
 
 form {
@@ -41,7 +58,6 @@ form {
 }
 
 label {
-    color:  white;
     font-weight: bold;
     position: relative;
     padding: 1.5em;
@@ -99,12 +115,21 @@ button {
     header {
         flex-wrap: wrap;
     }
-    h1, label, button {
+    h1 {
+        font-size:  90%;
+    }
+    label, button {
         font-size: 80%;
     }
-    h1 {
+    .title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         width: 100%;
-        padding: 1.2em 0 .5em;
+        padding: 1.2em 0 0;
+    }
+    .title p {
+        font-size: 70%;
     }
     button,
     label {
@@ -113,6 +138,10 @@ button {
     }
     button {
         margin-top: 1px;
+    }
+    footer {
+        top: .7em;
+        font-size: 70%;
     }
 }
 
@@ -124,13 +153,22 @@ button {
     header {
         justify-content: flex-end;
     }
-    h1, label, button {
+    h1 {
+        font-size: 120%;
+    }
+    label, button {
         font-size: 100%;
+    }
+    .title p {
+        font-size: 80%;
     }
     button,
     label {
         padding-top: 1em;
         padding-bottom: 1em;
+    }
+    footer {
+        bottom: -5px;
     }
 }
 
