@@ -7,17 +7,13 @@
 }
 
 html {
-    width: 100vw;
-    height: 100vh;
-    height: -webkit-fill-available;
     font-family: 'Courier New', monospace;
     cursor: url(images/cursor.svg) 20 20, auto;
 }
 
 body {
     width: 100%;
-    min-height: 100vh;
-    min-height: -webkit-fill-available;
+    height: 100dvh;
     margin: 0;
     background-color: #111;
     border: var(--border-width) solid #111;
@@ -173,7 +169,7 @@ button {
 }
 
 #canvas-bg {
-    height: calc(100vh - (var(--header-height) + var(--border-width)));
+    height: calc(100dvh - (var(--header-height) + var(--border-width)));
     background-position: center center;
 }
 
