@@ -8,16 +8,14 @@
 
 html {
     width: 100vw;
-    height: 100vh;
-    height: -webkit-fill-available;
+    height: 100dvh;
     font-family: 'Courier New', monospace;
     cursor: url(images/cursor.svg) 20 20, auto;
 }
 
 body {
     width: 100%;
-    min-height: 100vh;
-    min-height: -webkit-fill-available;
+    height: 100%;
     margin: 0;
     background-color: #111;
     border: var(--border-width) solid #111;
